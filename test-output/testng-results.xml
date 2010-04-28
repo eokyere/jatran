@@ -1,0 +1,66 @@
+<testng-results>
+  <reporter-output>
+  </reporter-output>
+  <suite name="jatran">
+    <groups>
+    </groups>
+    <test name="ScalaPrinterTest">
+      <class name="jatran.test.ScalaPrinterTest">
+        <test-method status="PASS" signature="tryCatchFinallyTransformations()" name="tryCatchFinallyTransformations" duration-ms="0" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="aFairlyComplexClassImplementingAStrutsAction()" name="aFairlyComplexClassImplementingAStrutsAction" duration-ms="4" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="upperBoundFormalTypeParameter()" name="upperBoundFormalTypeParameter" duration-ms="1" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="extensionWithCtorsNoInstMembersAndAStaticMember()" name="extensionWithCtorsNoInstMembersAndAStaticMember" duration-ms="0" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="literalClassToClassOf()" name="literalClassToClassOf" duration-ms="0" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="fooIsAFile()" name="fooIsAFile" duration-ms="1" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="staticMembersAreChangedToMembersOfCompanionObject()" name="staticMembersAreChangedToMembersOfCompanionObject" duration-ms="0" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="mynewTest()" name="mynewTest" duration-ms="1" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="generateStubs()" name="generateStubs" is-config="true" duration-ms="447" started-at="2009-07-10T18:35:16Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="forLoopsChangedToWhileLoopEquivalents()" name="forLoopsChangedToWhileLoopEquivalents" duration-ms="0" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testReturnExpressions()" name="testReturnExpressions" duration-ms="2" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="helloWorldApplication()" name="helloWorldApplication" duration-ms="1" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="whenToPrintReturnStatement()" name="whenToPrintReturnStatement" duration-ms="1" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testVariableParameterDef()" name="testVariableParameterDef" duration-ms="0" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="multipleImplementedInterfaces()" name="multipleImplementedInterfaces" duration-ms="1" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testDiffFileClass()" name="testDiffFileClass" duration-ms="11" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+      </class>
+      <class name="jatran.test.DiffTest">
+        <test-method status="PASS" signature="testStrings1()" name="testStrings1" duration-ms="1" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testStrings3()" name="testStrings3" duration-ms="0" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testInteger()" name="testInteger" duration-ms="0" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testBlanks()" name="testBlanks" duration-ms="0" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testStrings2()" name="testStrings2" duration-ms="0" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testComparableObject()" name="testComparableObject" duration-ms="1" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testStrings4()" name="testStrings4" duration-ms="0" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testLongArray()" name="testLongArray" duration-ms="25" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testRepeated()" name="testRepeated" duration-ms="1" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+        <test-method status="PASS" signature="testReallyBig()" name="testReallyBig" duration-ms="9" started-at="2009-07-10T18:35:17Z" finished-at="2009-07-10T18:35:17Z">
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>

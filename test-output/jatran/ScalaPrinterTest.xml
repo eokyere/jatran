@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ScalaPrinterTest" failures="0" tests="25" time="0.091" errors="0">
+  <properties/>
+  <testcase name="testLongArray" time="0.025" classname="jatran.test.DiffTest"/>
+  <testcase name="testBlanks" time="0.0" classname="jatran.test.DiffTest"/>
+  <testcase name="testStrings4" time="0.0" classname="jatran.test.DiffTest"/>
+  <testcase name="testComparableObject" time="0.0010" classname="jatran.test.DiffTest"/>
+  <testcase name="testStrings1" time="0.0010" classname="jatran.test.DiffTest"/>
+  <testcase name="testStrings2" time="0.0" classname="jatran.test.DiffTest"/>
+  <testcase name="testRepeated" time="0.0010" classname="jatran.test.DiffTest"/>
+  <testcase name="testStrings3" time="0.0" classname="jatran.test.DiffTest"/>
+  <testcase name="testInteger" time="0.0" classname="jatran.test.DiffTest"/>
+  <testcase name="testReallyBig" time="0.0090" classname="jatran.test.DiffTest"/>
+  <testcase name="testDiffFileClass" time="0.011" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="whenToPrintReturnStatement" time="0.0010" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="multipleImplementedInterfaces" time="0.0010" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="forLoopsChangedToWhileLoopEquivalents" time="0.0" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="staticMembersAreChangedToMembersOfCompanionObject" time="0.0" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="helloWorldApplication" time="0.0010" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="aFairlyComplexClassImplementingAStrutsAction" time="0.0040" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="mynewTest" time="0.0010" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="fooIsAFile" time="0.0010" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="extensionWithCtorsNoInstMembersAndAStaticMember" time="0.0" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="testVariableParameterDef" time="0.0" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="literalClassToClassOf" time="0.0" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="upperBoundFormalTypeParameter" time="0.0010" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="tryCatchFinallyTransformations" time="0.0" classname="jatran.test.ScalaPrinterTest"/>
+  <testcase name="testReturnExpressions" time="0.0020" classname="jatran.test.ScalaPrinterTest"/>
+</testsuite>

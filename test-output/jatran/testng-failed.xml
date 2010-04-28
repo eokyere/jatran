@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="5" skipfailedinvocationCounts="false" verbose="1" name="Failed suite [jatran]" junit="false" parallel="false" annotations="JDK">
+  <test name="ScalaPrinterTest(failed)" junit="false" parallel="false" annotations="JDK">
+    <classes>
+      <class name="jatran.test.ScalaPrinterTest">
+        <methods>
+          <include name="testVariableParameterDef"/>
+          <include name="generateStubs"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+</suite>
