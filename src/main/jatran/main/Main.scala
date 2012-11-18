@@ -1,119 +1,83 @@
 package jatran.main
 
 import java.io._
-
 import scala.io._
-import scalax.io._
-import RichFile._
-
 import antlr.ASTFactory
 import antlr.collections.AST
-
 import jatran.core.ScalaPrinter
 import jatran.core.SourcePrinter
-
 import jatran.lexing.JavaLexer
 import jatran.lexing.JavaRecognizer
 
 /**
- * @author eokyere
+ * @author eokyere, jmvanel
  */
-object Main {
-  def main(argv:Array[String]) {  
-    object Options extends CommandLineParser {
-      val input = new StringOption('i', "input", "src file or folder to transform") with AllowAll
-      val output = new StringOption('o', "output", "output folder; defaults to jatran-out under current dir") with AllowAll
-      val help = new Flag('h', "help", "Show help info") with AllowNone
-      
-      override def helpHeader = """
-          |  jatran v0.2
-          |  (c) 2006-2008 Emmanuel Okyere
-          |
-          |""".stripMargin
-    }
-    
-    val jatran = new Jatran()
+object Main extends App {
+	val helpHeader = """
+			|  jatran v0.2
+			|  (c) 2006-2008 Emmanuel Okyere
+			|
+			|""".stripMargin
+			val usage = helpHeader + """
+			--input\tsrc file or folder to transform
+			--output\toutput folder; defaults to jatran-out under current dir
+			--help\tShow help info
+			"""  
 
-    Options.parseOrHelp(argv) { cmd =>
-      if(cmd(Options.help)) {
-      	 Options.showHelp(System.out)
-         return
-      }
-      
-      (cmd(Options.input), cmd(Options.output)) match {
-        case (Some(i), Some(o)) =>
-          jatran.transform(i, o, false)
-        case (Some(i), None) =>
-          jatran.transform(i, "jatran-out", false)
-        case _ =>
-          Options.showHelp(System.out)
-      }
-    }
-  }
+			override def main(args:Array[String]) {  
+		if (args.length == 0) { println(usage); exit }
+		val options = nextOption(Map(), args.toList)
+				val output = options.getOrElse( Symbol("output"), "jatran-out") .asInstanceOf[String]
+						val input = options.get ( Symbol("input")) match {
+						case Some(string) => string.toString
+						case None => "" }
+
+		val jatran = new Jatran()
+		jatran.transform(input, output, false)
+		println(  "Done translated " + input + " into " + output )
+	}
+
+	type OptionMap = Map[Symbol, Any]
+			/** Recursively parse the arguments provided in remainingArguments
+			 *  adding them to the parsedArguments map and returning the
+			 *   completed map when done. */
+			def nextOption(parsedArguments: OptionMap,
+					remainingArguments: List[String]): OptionMap = {
+			// Does a string look like it could be an option?
+			def isOption(s: String) = s.startsWith("--")
+					// Match the remaining arguments.
+					remainingArguments match {
+
+				// Nothing left so just return the parsed arguments
+					case Nil => parsedArguments
+
+							/* Option defining the input
+							 * Use the value after the --input option as the input file or dir 
+							 * and continue parsing with the remainder of the list. */
+					case "--input" :: value :: tail =>
+					nextOption(parsedArguments ++ Map(Symbol("input") -> value.toString() ),  tail)
+
+					// The output directory. 
+					case "--output" :: possibleOption :: tail =>
+					nextOption(parsedArguments ++ Map(Symbol("output") -> possibleOption.toString() ),  tail)
+
+
+					// output directory. This matches the last element in the list if it
+					// doesn't look like an option. As we know there is nothing
+					// left in the list use Nil for the remainingArguments passed
+					// to the next iteration.
+					case dir :: Nil
+					if !isOption(dir) =>
+					nextOption(parsedArguments ++ Map(Symbol("input") -> dir), Nil)
+
+					case "--help" :: Nil =>
+					println( usage  )
+					exit(0)
+
+					// Nothing else matched so this must be an unknown option.
+					case unknownOption :: tail =>
+					error("Unknown option " + unknownOption + usage  )
+					exit(1)
+			}
+	}
 }
-
-class Jatran {
-  def transform(src:String, out:String, untyped:Boolean) {
-    transform(new File(src), out, untyped)
-  }
-  
-  def transform(src:File, out:String, untyped:Boolean) {
-    for (f <- src.flatten; if f.name.endsWith(".java") && 5 <= f.name.length) {
-        val i = new BufferedReader(new FileReader(f))
-
-        val lexer = new JavaLexer(i)
-        lexer.setFilename(f.name)
-
-        val parser = new JavaRecognizer(lexer)
-        parser.setFilename(f.name)
-
-        val root = new ASTFactory().create(SourcePrinter.ROOT_ID,"AST ROOT")
-        parser.compilationUnit()
-        root.setFirstChild(parser.getAST())
-
-        val pkg = packageName(f)
-        val folder = new File(out + File.separator + pkg.replace(".", File.separator))
-        folder.mkdirs()
-        val fname = folder.getAbsolutePath() + File.separator + getClassName(f) + ".scala"
-    
-        val fl = new File(fname)                        
-        if (fl.exists())
-          fl.delete()
-    
-        //TODO: insert a virtual fileoutsteram here for testing
-        new ScalaPrinter().print(root, new PrintStream(new FileOutputStream(fname)), untyped)
-    }
-  }
-  
-  private def packageName(file:File):String = {
-    file.lines.foreach { line =>
-      val s = line.trim
-      if (s.startsWith("package"))
-        return s.substring(7, s.length - 1).trim
-    }
-    
-    ""
-  }
-
-  private def getClassName(file:File):String = {
-    val len = file.name.lastIndexOf('.')
-    file.name.substring(0, len)
-  }
-}
-
-class RichFile(file: File) {
-  def flatten : Iterable[File] = 
-    Seq.single(file) ++ children.flatMap(child => new RichFile(child).flatten)
-
-  def name = file.getName()
-  def lines = scala.io.Source.fromFile(file).getLines
-  
-  private def children = new Iterable[File] {
-    def elements = if (file.isDirectory) file.listFiles.elements else Iterator.empty
-  }
-}
-
-object RichFile {
-  implicit def toRichFile(file: File) = new RichFile(file)
-}
-

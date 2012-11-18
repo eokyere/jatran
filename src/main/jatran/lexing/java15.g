@@ -1634,7 +1634,9 @@ WS	:	(	' '
 SL_COMMENT
 	:	"//"
 		(~('\n'|'\r'))* ('\n'|'\r'('\n')?)
-		{$setType(Token.SKIP); newline();}
+		{ // jmv $setType(Token.SKIP);
+			newline();
+		}
 	;
 
 // multiple-line comments
@@ -1658,7 +1660,7 @@ ML_COMMENT
 		|	~('*'|'\n'|'\r')
 		)*
 		"*/"
-		{$setType(Token.SKIP);}
+		// jmv {$setType(Token.SKIP);}
 	;
 
 

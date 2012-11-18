@@ -10,6 +10,10 @@ import java.util.Map;
 import java.util.Stack;
 
 import jemitter.IndentingPrintStream;
+import antlr.CommonASTWithHiddenTokens;
+import antlr.TokenStreamHiddenTokenFilter;
+import antlr.CommonASTWithHiddenTokens;
+import antlr.TokenStreamHiddenTokenFilter;
 import antlr.collections.AST;
 
 /**
@@ -67,9 +71,21 @@ import antlr.collections.AST;
  * parentheses or not.
  */
 public abstract class SourcePrinter implements JavaTokenTypes {
+    private TokenStreamHiddenTokenFilter filter;
     public SourcePrinter() {
         setupTokenNames();
         setupKeywords();
+    }
+
+    /////////////// jmv ////////////////////////////
+    public void setFilter( TokenStreamHiddenTokenFilter filter) {
+            this.filter = filter;
+    }
+    /** walk list of hidden tokens in order, printing them out */
+    public void dumpHidden(antlr.CommonHiddenStreamToken t) {
+      for ( ; t!=null ; t= filter.getHiddenAfter(t) ) {
+        print(t.getText());
+      }
     }
 
     public void print(final AST ast, final PrintStream stream, final boolean untyped) {
@@ -100,6 +116,14 @@ public abstract class SourcePrinter implements JavaTokenTypes {
         AST child1 = ast.getFirstChild();
         AST child2 = null;
         AST child3 = null;
+
+       // jmv
+       if (ast instanceof CommonASTWithHiddenTokens) {
+               CommonASTWithHiddenTokens ast2 = (CommonASTWithHiddenTokens) ast;
+               dumpHidden( ast2.getHiddenBefore() );
+       } else {
+               System.out.println("!!!! SourcePrinter.print(): " + ast.getClass() + " " + ast.toString() );
+       }
 
         if (child1 != null) {
             child2 = child1.getNextSibling();
@@ -419,6 +443,8 @@ public abstract class SourcePrinter implements JavaTokenTypes {
         previousType = ast.getType();
         brApplied = false;
     }
+
+    protected void printComment(AST ast) {}
 
     protected void printIdent(final AST ast) {}
 

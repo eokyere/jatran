@@ -64,7 +64,14 @@ public class ScalaPrinter extends SourcePrinter {
         print(getChild(ast, INTERFACE_DEF));
         br();
     }
-	
+
+    @Override protected void printComment(AST ast) {
+       System.err.println("printComment() " + ast );
+       System.err.println( ast.getText() );
+        print(ast.getFirstChild());
+        // ?????
+    }
+
     //TODO:retrieve names of dot children, so we can for instance do System.out.println -> println
     @Override protected void printDot(final AST child1, final AST child2) {
         if (child2.getType() == LITERAL_class) {
